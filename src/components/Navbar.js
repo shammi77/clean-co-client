@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = ({ children }) => {
+  const [dark, setDark] = useState(false);
+  console.log(dark);
+
   return (
-    <div className="drawer drawer-end">
+    <div className="drawer drawer-end" data-theme={dark ? "dark" : "light"}>
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* <!-- Navbar --> */}
@@ -55,7 +58,7 @@ const Navbar = ({ children }) => {
                   Login
                 </NavLink>
               </li>
-             
+
               <li className="dropdown dropdown-hover dropdown-end">
                 <label
                   tabIndex="0"
@@ -75,8 +78,8 @@ const Navbar = ({ children }) => {
                   </li>
                 </ul>
               </li>
-              <label  class=" swap swap-rotate">
-                <input type="checkbox" data-toggle-theme="dark,light" />
+              <label class=" swap swap-rotate">
+                <input type="checkbox" onClick={() => setDark(!dark)} />
                 <svg
                   class="swap-on fill-current w-10 h-10"
                   xmlns="http://www.w3.org/2000/svg"
@@ -103,20 +106,50 @@ const Navbar = ({ children }) => {
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
           <li>
-            <a>Home</a>
+            <NavLink to="/" className="rounded-lg">
+              Home
+            </NavLink>
           </li>
           <li>
-            <a>About</a>
+            <NavLink to="/about" className="rounded-lg">
+              About
+            </NavLink>
           </li>
           <li>
-            <a>Contact</a>
+            <NavLink to="/Contact" className="rounded-lg">
+              Contact
+            </NavLink>
           </li>
           <li>
-            <a>Services</a>
+            <NavLink to="/services" className="rounded-lg">
+              Services
+            </NavLink>
           </li>
           <li>
-            <a>Login</a>
+            <NavLink to="/login" className="rounded-lg">
+              Login
+            </NavLink>
           </li>
+          <div
+            tabindex="0"
+            class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box"
+          >
+            <div class="collapse-title text-xl font-medium">
+             Book Now
+            </div>
+            <div class="collapse-content">
+              <li>
+                <NavLink to="/services" className="rounded-lg">
+                  Quick Book
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/login" className="rounded-lg">
+                  Pre Book
+                </NavLink>
+              </li>
+            </div>
+          </div>
         </ul>
       </div>
     </div>
