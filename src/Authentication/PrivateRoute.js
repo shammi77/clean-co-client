@@ -1,9 +1,11 @@
 import React from 'react';
 import {Navigate , Outlet, useLocation} from 'react-router-dom';
+import useAdmin from '../hooks/useAdmin';
 
 const PrivateRoute = () => {
     const location = useLocation();
-    const user = false;
+    const user = true;
+
    if (!user)  {
        return <Navigate to ='/login' state = {{ from : location }} replace />;
    }
